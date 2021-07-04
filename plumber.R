@@ -37,7 +37,7 @@ function(stock){
 #* Return the sum of two numbers
 #* @png
 #* @post /ma
-function(stock, ma){
+function(){
   stockPrice <- tq_get('TCS.NS',
                          get = "stock.prices",
                          from = Sys.Date() - 365)
