@@ -33,3 +33,20 @@ function(stock){
                          from = Sys.Date() - 365)
   multi_stocks
 }
+
+#* Return the sum of two numbers
+#* @param stock Add Stock in .NS format
+#* @param ma Add moving average
+#* @post /ma
+function(stock, ma){
+  stockPrice <- tq_get(stock,
+                         get = "stock.prices",
+                         from = Sys.Date() - 365)
+  stockPrice %>% 
+    ggplot(aes(x = date, y = close)) +
+    geom_candlestick(aes(open = open, high = high, low = low, close = close)) +
+    geom_ma(ma_fun = SMA, n = ma, color = "darkblue", size = 1)
+}
+
+
+
