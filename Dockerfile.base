@@ -1,0 +1,21 @@
+FROM virtualstaticvoid/heroku-docker-r:4.1.0
+
+RUN export DEBIAN_FRONTEND=noninteractive \
+  && apt-get update -q \
+  && apt-get install -qy \
+    libsodium-dev \
+    libssl-dev \
+    libxml2-dev \
+  && apt-get clean \
+  && rm -rf /var/lib/apt/lists/*
+
+# only copy renv files (and _not_ application)
+COPY renv/* /app/renv/
+COPY .Rprofile /app/.Rprofile
+COPY renv.lock /app/renv.lock
+
+# restore renv to install packages
+RUN /usr/bin/R --no-save --slave -e 'renv::restore()'
+
+# create on build to copy application files
+ONBUILD COPY . /app
