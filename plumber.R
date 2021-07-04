@@ -36,7 +36,7 @@ function(stock){
 
 #* Return the sum of two numbers
 #* @png
-#* @post /ma
+#* @get /ma
 function(){
   stockPrice <- tq_get('TCS.NS',
                          get = "stock.prices",
