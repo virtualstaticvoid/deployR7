@@ -1,3 +1,6 @@
 build:
   docker:
     web: Dockerfile
+
+  config:
+    BASE_IMAGE: virtualstaticvoid/deployr7-example:app-base

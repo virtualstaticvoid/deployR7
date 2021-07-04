@@ -1,7 +1,7 @@
-FROM virtualstaticvoid/heroku-docker-r:plumber
+ARG BASE_IMAGE
+FROM ${BASE_IMAGE}
 
-# ONBUILD will copy application files into the container
-#  and execute init.R (if it exists) and restore packrat packages (if they exist)
+# on build (from base image) will copy application files
 
 # provide the port for Plumber, so that running/testing outside of Heroku is possible
 # Heroku will override the PORT value at runtime
