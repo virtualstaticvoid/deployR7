@@ -25,9 +25,11 @@ function(){
 }
 
 #* Return the sum of two numbers
-#* @param a The first number to add
-#* @param b The second number to add
-#* @post /sum
-function(a, b){
-  as.numeric(a) + as.numeric(b)
+#* @param stock Add Stock in .NS format
+#* @post /stock
+function(stock){
+  multi_stocks <- tq_get(stock,
+                         get = "stock.prices",
+                         from = Sys.Date() - 365)
+  multi_stocks
 }
