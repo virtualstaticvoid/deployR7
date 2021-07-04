@@ -38,8 +38,15 @@ function(stock){
 #* @png
 #* @get /ma
 function(){
-  stockPrice <- getSymbols('TCS.NS', from=Sys.Date() - 100, auto.assign = FALSE)
-  chartSeries(stockPrice)
+  multi_stocks <- tq_get('TCS.NS',
+                         get = "stock.prices",
+                         from = Sys.Date() - 365)
+  multi_stocks %>% 
+  ggplot(aes(x = date, y = close)) +
+  geom_line() +
+  labs(title = "AAPL Line Chart", y = "Closing Price", x = "") + 
+  theme_tq()
+  
 }
 
 
