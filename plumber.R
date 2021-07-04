@@ -38,15 +38,8 @@ function(stock){
 #* @png
 #* @get /ma
 function(){
-  stockPrice <- tq_get('TCS.NS',
-                         get = "stock.prices",
-                         from = Sys.Date() - 365)
-  moving <- stockPrice %>% 
-    ggplot(aes(x = date, y = close)) +
-    geom_candlestick(aes(open = open, high = high, low = low, close = close)) +
-    geom_ma(ma_fun = SMA, n = 20, color = "darkblue", size = 1)
-  
-  moving
+  stockPrice <- getSymbols('TCS.NS', from=Sys.Date() - 100, auto.assign = FALSE)
+  chartSeries(stockPrice)
 }
 
 
