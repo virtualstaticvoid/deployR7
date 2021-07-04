@@ -37,6 +37,7 @@ function(stock){
 #* Return the sum of two numbers
 #* @param stock Add Stock in .NS format
 #* @param ma Add moving average
+#* @png
 #* @post /ma
 function(stock, ma){
   stockPrice <- tq_get(stock,
