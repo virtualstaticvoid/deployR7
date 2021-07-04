@@ -41,12 +41,12 @@ function(){
   multi_stocks <- tq_get('TCS.NS',
                          get = "stock.prices",
                          from = Sys.Date() - 365)
-  multi_stocks %>% 
+  lineplot <- multi_stocks %>% 
   ggplot(aes(x = date, y = close)) +
   geom_line() +
   labs(title = "AAPL Line Chart", y = "Closing Price", x = "") + 
   theme_tq()
-  
+  print(lineplot)
 }
 
 
