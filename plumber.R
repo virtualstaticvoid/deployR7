@@ -40,11 +40,15 @@ function(stock){
 function(){
   multi_stocks <- tq_get('TCS.NS',
                          get = "stock.prices",
-                         from = Sys.Date() - 365)
+                         from = Sys.Date() - 720)
   lineplot <- multi_stocks %>% 
   ggplot(aes(x = date, y = close)) +
-  geom_line() +
-  labs(title = "AAPL Line Chart", y = "Closing Price", x = "") + 
+    geom_candlestick(aes(open = open, high = high, low = low, close = close),
+                     colour_up = "green", colour_down = "red", 
+                     fill_up  = "green", fill_down  = "red") +
+  labs(title = "TCS Line Chart", y = "Closing Price", x = "") + 
+    geom_ma(ma_fun = SMA, n = 20, color = "darkblue", size = 1) +
+    geom_ma(ma_fun = SMA, n = 200, color = "darkblue", size = 1) +
   theme_tq()
   print(lineplot)
 }
