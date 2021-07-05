@@ -39,7 +39,8 @@ function(stock){
 #* @param from Add Start Date
 #* @param to Add End Date - Default currdate - 1
 #* @param bluema Add your first ma - blue
-#* @png redma Add your second ma - red
+#* @param redma Add your second ma - red
+#* @serializer png 
 #* @get /ma
 function(stock, bluema, redma, from, to=Sys.Date() - 1){
   multi_stocks <- tq_get(stock,
