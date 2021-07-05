@@ -52,8 +52,8 @@ function(stock, bluema, redma, from, to=Sys.Date() - 1){
                      colour_up = "green", colour_down = "red", 
                      fill_up  = "green", fill_down  = "red") +
   labs(title = "TCS Line Chart", y = "Closing Price", x = "") + 
-    geom_ma(ma_fun = SMA, n = bluema, color = "darkblue", size = 1) +
-    geom_ma(ma_fun = SMA, n = redma, color = "darkblue", size = 1) +
+    geom_ma(ma_fun = SMA, n = as.numeric(bluema), color = "darkblue", size = 1) +
+    geom_ma(ma_fun = SMA, n = as.numeric(redma), color = "darkblue", size = 1) +
   theme_tq()
   print(lineplot)
 }
