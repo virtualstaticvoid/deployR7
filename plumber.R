@@ -35,20 +35,24 @@ function(stock){
 }
 
 #* Return the sum of two numbers
-#* @png
+#* @param stock Add Stock in .NS format
+#* @param from Add Start Date
+#* @param to Add End Date - Default currdate - 1
+#* @param bluema Add your first ma - blue
+#* @png redma Add your second ma - red
 #* @get /ma
-function(){
-  multi_stocks <- tq_get('TCS.NS',
+function(stock, bluema, redma, from, to=Sys.Date() - 1){
+  multi_stocks <- tq_get(stock,
                          get = "stock.prices",
-                         from = Sys.Date() - 720)
+                         from = from, to=to)
   lineplot <- multi_stocks %>% 
   ggplot(aes(x = date, y = close)) +
     geom_candlestick(aes(open = open, high = high, low = low, close = close),
                      colour_up = "green", colour_down = "red", 
                      fill_up  = "green", fill_down  = "red") +
   labs(title = "TCS Line Chart", y = "Closing Price", x = "") + 
-    geom_ma(ma_fun = SMA, n = 20, color = "darkblue", size = 1) +
-    geom_ma(ma_fun = SMA, n = 200, color = "darkblue", size = 1) +
+    geom_ma(ma_fun = SMA, n = bluema, color = "darkblue", size = 1) +
+    geom_ma(ma_fun = SMA, n = redma, color = "darkblue", size = 1) +
   theme_tq()
   print(lineplot)
 }
